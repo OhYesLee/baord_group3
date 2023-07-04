@@ -3,51 +3,8 @@
 ## MySQL 데이터 베이스에 board, role, role2, user, user_role의 테이블을 만들어 로그인 기능을통해 게시글 작성자만 글 삭제와 수정이 가능하게 하고
 ## 게시글을 board 테이블에 저장하게 만들어 봤습니다.
 ### 테이블의 속성은 아래와 같습니다.
-board table : 
-+----------+--------------+------+-----+-------------------+-------------------+
-| Field    | Type         | Null | Key | Default           | Extra             |
-+----------+--------------+------+-----+-------------------+-------------------+
-| board_id | int          | NO   | PRI | NULL              | auto_increment    |
-| title    | varchar(100) | NO   |     | NULL              |                   |
-| content  | text         | YES  |     | NULL              |                   |
-| user_id  | int          | NO   | MUL | NULL              |                   |
-| regdate  | timestamp    | YES  |     | CURRENT_TIMESTAMP | DEFAULT_GENERATED |
-| view_cnt | int          | YES  |     | 0                 |                   |
-+----------+--------------+------+-----+-------------------+-------------------+
+![mysql1](https://github.com/tjdwo8577/baord_group3/assets/88715270/1ed08859-a08d-4721-a83c-aefdfb166799)
 
-mysql> desc role;
-+---------+-------------+------+-----+---------+-------+
-| Field   | Type        | Null | Key | Default | Extra |
-+---------+-------------+------+-----+---------+-------+
-| role_id | int         | NO   | PRI | NULL    |       |
-| name    | varchar(20) | YES  |     | NULL    |       |
-+---------+-------------+------+-----+---------+-------+
-
-mysql> desc role2;
-+---------+-------------+------+-----+---------+-------+
-| Field   | Type        | Null | Key | Default | Extra |
-+---------+-------------+------+-----+---------+-------+
-| role_id | int         | NO   | PRI | NULL    |       |
-| name    | varchar(20) | YES  |     | NULL    |       |
-+---------+-------------+------+-----+---------+-------+
-
-mysql> desc user;
-+----------+--------------+------+-----+-------------------+-------------------+
-| Field    | Type         | Null | Key | Default           | Extra             |
-+----------+--------------+------+-----+-------------------+-------------------+
-| user_id  | int          | NO   | PRI | NULL              | auto_increment    |
-| email    | varchar(255) | NO   |     | NULL              |                   |
-| name     | varchar(50)  | NO   |     | NULL              |                   |
-| password | varchar(500) | NO   |     | NULL              |                   |
-| regdate  | timestamp    | YES  |     | CURRENT_TIMESTAMP | DEFAULT_GENERATED |
-+----------+--------------+------+-----+-------------------+-------------------+
-
-mysql> desc user_role;
-+---------+------+------+-----+---------+-------+
-| Field   | Type | Null | Key | Default | Extra |
-+---------+------+------+-----+---------+-------+
-| user_id | int  | NO   | PRI | NULL    |       |
-| role_id | int  | NO   | PRI | NULL    |       |
-+---------+------+------+-----+---------+-------+
+![mysql2](https://github.com/tjdwo8577/baord_group3/assets/88715270/07df94e0-df1b-498d-9aef-c273e3da9d41)
 
 ### css 부분은 아직 미완성입니다.
