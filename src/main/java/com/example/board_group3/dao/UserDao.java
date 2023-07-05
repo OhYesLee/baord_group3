@@ -60,8 +60,6 @@ public class UserDao {
         String sql = "insert into user_role( user_id, role_id) values (:userId, 1)";
         SqlParameterSource params = new MapSqlParameterSource("userId", userId);
         jdbcTemplate.update(sql, params);
-
-
     }
 
     @Transactional
