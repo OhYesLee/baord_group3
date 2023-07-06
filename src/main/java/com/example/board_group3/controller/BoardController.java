@@ -25,10 +25,12 @@ public class BoardController {
     //컨트롤러의 메소드가 리턴하는 문자열을 템플릿(리스트) 이름니다.
     // http://localhost:8080/ --> "list"라는 이름의 템플릿을 사용(forward)하여 화면에 출력.
     //list를 리턴한다는 것을 classpath:/templates/list.html을 사용한다.
+
     @GetMapping("/")
     public String list(@RequestParam(name = "page", defaultValue = "1") int page, HttpSession session, Model model) { // HttpSession, Model은 Spring이 자동으로 넣어준다.
         LoginInfo loginInfo = (LoginInfo)session.getAttribute("loginInfo");
         model.addAttribute("loginInfo", loginInfo);
+
 
         int totalCount = boardService.getTotalCount();
         List<Board> list = boardService.getBoards(page);
@@ -38,10 +40,10 @@ public class BoardController {
         }
 
         int currentPage = page;
-//        System.out.println("totalCount : " + totalCount);
 //        for(Board board : list) {
 //            System.out.println(board);
 //        }
+
         model.addAttribute("list", list);
         model.addAttribute("pageCount", pageCount);
         model.addAttribute("currentPage", currentPage);
@@ -148,4 +150,12 @@ public class BoardController {
         boardService.updateBoard(boardId, title, content);
         return  "redirect:/board?boardId=" + boardId; // 수정된 글 보기로 redirect
     }
+
+    @GetMapping("/search")
+    public String search(@RequestParam("keyword") String keyword, Model model) {
+        List<Board> searchResults = boardService.searchBoards(keyword);
+        model.addAttribute("searchResults", searchResults);
+        return "search-results";
+    }
+
 }

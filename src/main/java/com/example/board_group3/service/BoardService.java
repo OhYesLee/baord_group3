@@ -61,4 +61,10 @@ public class BoardService {
     public void updateBoard(int boardId, String title, String content) {
         boardDao.updateBoard(boardId, title, content);
     }
+
+    @Transactional(readOnly = true)
+    public List<Board> searchBoards(String keyword) {
+        return boardDao.searchBoards(keyword);
+    }
+
 }

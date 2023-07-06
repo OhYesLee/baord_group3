@@ -12,6 +12,7 @@ import org.springframework.jdbc.core.simple.SimpleJdbcInsertOperations;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+
 import javax.sql.DataSource;
 import javax.xml.crypto.Data;
 import java.time.LocalDateTime;
@@ -99,5 +100,13 @@ public class BoardDao {
         jdbcTemplate.update(sql, params);
 
         //jdbcTemplate.update(sql, Map.of("boardId", boardId, "title", title, "content", content));
+    }
+
+    @Transactional(readOnly = true)
+    public List<Board> searchBoards(String keyword) {
+        String sql = "SELECT * FROM board WHERE title LIKE :keyword OR content LIKE :keyword";
+        RowMapper<Board> rowMapper = BeanPropertyRowMapper.newInstance(Board.class);
+        List<Board> searchResults = jdbcTemplate.query(sql, Map.of("keyword", "%" + keyword + "%"), rowMapper);
+        return searchResults;
     }
 }
