@@ -1,6 +1,7 @@
+# Spring Data Source 설정 - MySQL DB접속 정보를 설정
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/board_group3?serverTimezone=Asia/Seoul
+    url: jdbc:mysql://localhost:3306/board_group3_clone?serverTimezone=Asia/Seoul
     username: root
     password: mypassword

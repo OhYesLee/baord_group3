@@ -7,6 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title> 검색한 게시물</title>
+    <link rel="stylesheet" href="search.css" />
 </head>
 <div id="search-results">
     <div class="container">
@@ -22,7 +23,6 @@
             </tr>
             </thead>
             <tbody>
-            <!-- 검색된 게시글 표시 -->
             <tr th:each="board : ${searchResults}">
                 <td th:text="${board.boardId}"></td>
                 <td>
@@ -31,8 +31,9 @@
                 <td th:text="${board.viewCnt}"></td>
                 <td th:text="${board.name}"></td>
                 <td th:text="${board.regdate}"></td>
-                <td th:text="${board.name}"></td>
+
             </tr>
+            <a href="/">목록보기</a>
             </tbody>
         </table>
     </div>
