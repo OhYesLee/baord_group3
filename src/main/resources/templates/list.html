@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>게시판 목록보기</title>
-    <link rel="stylesheet" href="board1.css" />
+    <link rel="stylesheet" href="list.css" />
 </head>
 <body>
 <section class="board">
@@ -61,15 +61,27 @@
                 </tbody>
             </table>
         </div>
-        <div>
-            <a href="/writeForm" th:if="${loginInfo != null}">글쓰기</a> <!--로그인 했을때의 글쓰기 버튼-->
-            <span th:if="${loginInfo == null}">글쓰기</span> <!--로그인 안했을때의 글쓰기 버튼-->
+
+        <div id = "writeFormButton">
+            <div class="container">
+                <div>
+                    <a href="/writeForm" th:if="${loginInfo != null}">글쓰기</a> <!--로그인 했을때의 글쓰기 버튼-->
+                    <span th:if="${loginInfo == null}">글쓰기</span> <!--로그인 안했을때의 글쓰기 버튼-->
+                </div>
+            </div>
         </div>
-        <div>
-            <!--아래는 pagenation을 담당하는 부분이다. n 은 number의 약자, ${#numbers.sequence(1, pagcount) 는 1~pageCount를 n에 넣어준다.-->
-            <!--th:href="@{/(page=${n})}" ==> 클릭시 해당하는 페이지로 이동한다. th:text="${n}" 클릭할수 있는 페이지 숫자를 생성해준다. -->
-            <span th:each="n : ${#numbers.sequence(1, pageCount)}"><a th:href="@{/(page=${n})}" th:text="${n}"></a></span>
+
+        <div id = "paginationButton">
+            <div class="container">
+                <div>
+                    <!--아래는 pagenation을 담당하는 부분이다. n 은 number의 약자, ${#numbers.sequence(1, pagcount) 는 1~pageCount를 n에 넣어준다.-->
+                    <!--th:href="@{/(page=${n})}" ==> 클릭시 해당하는 페이지로 이동한다. th:text="${n}" 클릭할수 있는 페이지 숫자를 생성해준다. -->
+                    <span th:each="n : ${#numbers.sequence(1, pageCount)}"><a th:href="@{/(page=${n})}" th:text="${n}"></a></span>
+                </div>
+            </div>
+
         </div>
+
         <!-- 검색어 입력 필드와 검색 버튼 -->
 
         <div id="search-form">
@@ -80,44 +92,17 @@
                 </form>
             </div>
         </div>
-    </div>
-
-    <!-- Comment section -->
-    <div id="comment-section">
-        <div class="container">
-            <h4>댓글</h4>
-            <div th:each="comment : ${board.comments}">
-                <div class="comment">
-                <span class="comment-info">
-                    <span class="comment-user" th:text="${comment.user.name}"></span>
-                    <span class="comment-date" th:text="${comment.date}"></span>
-                </span>
-                    <p class="comment-content" th:text="${comment.content}"></p>
-                </div>
-                <div class="subcomments">
-                    <div th:each="subcomment : ${comment.subcomments}">
-                        <div class="subcomment">
-                        <span class="subcomment-info">
-                            <span class="subcomment-user" th:text="${subcomment.user.name}"></span>
-                            <span class="subcomment-date" th:text="${subcomment.date}"></span>
-                        </span>
-                            <p class="subcomment-content" th:text="${subcomment.content}"></p>
-                        </div>
-                    </div>
-                </div>
-            </div>
+        <div id="external-link">
+            <a href="https://www.google.com">외부 링크</a>
         </div>
-    </div>
-
-    <!-- Comment form -->
-    <div id="comment-form">
-        <div class="container">
-            <h4>댓글 작성하기</h4>
-            <form action="/addComment" method="POST">
-                <input type="hidden" name="boardId" th:value="${board.boardId}" />
-                <textarea name="content" placeholder="댓글을 입력하세요"></textarea>
-                <button type="submit">댓글 작성</button>
-            </form>
+        <div id="dropdownButton">
+            <div class="container">
+                <select>
+                    <option value="option1">옵션 1</option>
+                    <option value="option2">옵션 2</option>
+                    <option value="option3">옵션 3</option>
+                </select>
+            </div>
         </div>
     </div>
 </section>

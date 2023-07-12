@@ -1,9 +1,9 @@
 package com.example.board_group3.controller;
 
-import com.example.board_group3.dao.CommentDao;
-import com.example.board_group3.dao.SubcommentDao;
+//import com.example.board_group3.dao.CommentDao;
+//import com.example.board_group3.dao.SubcommentDao;
 import com.example.board_group3.dto.Board;
-import com.example.board_group3.dto.Comment;
+//import com.example.board_group3.dto.Comment;
 import com.example.board_group3.dto.LoginInfo;
 import com.example.board_group3.service.BoardService;
 import lombok.RequiredArgsConstructor;
@@ -23,8 +23,8 @@ import java.util.List;
 public class BoardController {
 
     private final BoardService boardService; // BoardService가 BoardController에서도 사용되어야 하니깐 선언을 해야한다.
-    private final CommentDao commentDao;
-    private final SubcommentDao subcommentDao;
+//    private final CommentDao commentDao;
+//    private final SubcommentDao subcommentDao;
 
     //게시물 목록 보여주는 것
     //컨트롤러의 메소드가 리턴하는 문자열을 템플릿(리스트) 이름니다.
@@ -161,61 +161,61 @@ public class BoardController {
         return "search-results";
     }
 
-    @PostMapping("/addComment")
-    public String addComment(
-            @RequestParam("boardId") int boardId,
-            @RequestParam("content") String content,
-            HttpSession session
-    ) {
-        LoginInfo loginInfo = (LoginInfo) session.getAttribute("loginInfo");
-        if (loginInfo == null) {
-            return "redirect:/loginform";
-        }
-        int userId = loginInfo.getUserId();
-        commentDao.addComment(boardId, userId, content);
-        return "redirect:/board?boardId=" + boardId;
-    }
-
-    @GetMapping("/deleteComment")
-    public String deleteComment(
-            @RequestParam("commentId") int commentId,
-            HttpSession session
-    ) {
-        LoginInfo loginInfo = (LoginInfo) session.getAttribute("loginInfo");
-        if (loginInfo == null) {
-            return "redirect:/loginform";
-        }
-        commentDao.deleteComment(commentId);
-        return "redirect:/";
-    }
-
-    @PostMapping("/addSubcomment")
-    public String addSubcomment(
-            @RequestParam("commentId") int commentId,
-            @RequestParam("content") String content,
-            HttpSession session
-    ) {
-        LoginInfo loginInfo = (LoginInfo) session.getAttribute("loginInfo");
-        if (loginInfo == null) {
-            return "redirect:/loginform";
-        }
-        int userId = loginInfo.getUserId();
-        subcommentDao.addSubcomment(commentId, userId, content);
-        Comment comment = commentDao.getComment(commentId); // 수정된 부분
-        return "redirect:/board?boardId=" + comment.getBoardId();
-    }
-
-    @GetMapping("/deleteSubcomment")
-    public String deleteSubcomment(
-            @RequestParam("subcommentId") int subcommentId,
-            HttpSession session
-    ) {
-        LoginInfo loginInfo = (LoginInfo) session.getAttribute("loginInfo");
-        if (loginInfo == null) {
-            return "redirect:/loginform";
-        }
-        subcommentDao.deleteSubcomment(subcommentId);
-        return "redirect:/";
-    }
+//    @PostMapping("/addComment")
+//    public String addComment(
+//            @RequestParam("boardId") int boardId,
+//            @RequestParam("content") String content,
+//            HttpSession session
+//    ) {
+//        LoginInfo loginInfo = (LoginInfo) session.getAttribute("loginInfo");
+//        if (loginInfo == null) {
+//            return "redirect:/loginform";
+//        }
+//        int userId = loginInfo.getUserId();
+//        commentDao.addComment(boardId, userId, content);
+//        return "redirect:/board?boardId=" + boardId;
+//    }
+//
+//    @GetMapping("/deleteComment")
+//    public String deleteComment(
+//            @RequestParam("commentId") int commentId,
+//            HttpSession session
+//    ) {
+//        LoginInfo loginInfo = (LoginInfo) session.getAttribute("loginInfo");
+//        if (loginInfo == null) {
+//            return "redirect:/loginform";
+//        }
+//        commentDao.deleteComment(commentId);
+//        return "redirect:/";
+//    }
+//
+//    @PostMapping("/addSubcomment")
+//    public String addSubcomment(
+//            @RequestParam("commentId") int commentId,
+//            @RequestParam("content") String content,
+//            HttpSession session
+//    ) {
+//        LoginInfo loginInfo = (LoginInfo) session.getAttribute("loginInfo");
+//        if (loginInfo == null) {
+//            return "redirect:/loginform";
+//        }
+//        int userId = loginInfo.getUserId();
+//        subcommentDao.addSubcomment(commentId, userId, content);
+//        Comment comment = commentDao.getComment(commentId); // 수정된 부분
+//        return "redirect:/board?boardId=" + comment.getBoardId();
+//    }
+//
+//    @GetMapping("/deleteSubcomment")
+//    public String deleteSubcomment(
+//            @RequestParam("subcommentId") int subcommentId,
+//            HttpSession session
+//    ) {
+//        LoginInfo loginInfo = (LoginInfo) session.getAttribute("loginInfo");
+//        if (loginInfo == null) {
+//            return "redirect:/loginform";
+//        }
+//        subcommentDao.deleteSubcomment(subcommentId);
+//        return "redirect:/";
+//    }
 
 }

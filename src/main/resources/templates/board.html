@@ -1,3 +1,4 @@
+<!--
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -18,8 +19,13 @@
 <div><a href="/">목록보기</a></div>
 <div><a th:href="@{/updateform(boardId=${board.boardId})}">수정하기</a></div>
 <div><a onclick='confirmDelete();' th:href="@{/delete(boardId=${board.boardId})}">삭제하기</a></div>
+</body>
+</html>
 
-<!-- 댓글 목록 -->
+-->
+
+<!--
+댓글 목록
 <h3>댓글 목록</h3>
 <ul>
     <li th:each="comment : ${comments}">
@@ -37,7 +43,8 @@
     </li>
 </ul>
 
-<!-- 댓글 작성 폼 -->
+
+ 댓글 작성 폼
 <form action="/addComment" method="post">
     <input type="hidden" name="boardId" th:value="${board.boardId}">
     <textarea name="content" placeholder="댓글 내용"></textarea>
@@ -94,6 +101,48 @@
             alert("게시글이 삭제되었습니다.");
         }
     }
-</script>
+</script> -->
+
+<!-- boarddetail.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>게시물 상세보기</title>
+    <link rel="stylesheet" href="boarddetail.css" />
+</head>
+<body>
+<table class="board-details">
+    <tr>
+        <th>글쓴이</th>
+        <td><span th:text="${board.name}"></span></td>
+    </tr>
+    <tr>
+        <th>제목</th>
+        <td><span th:text="${board.title}"></span></td>
+    </tr>
+    <tr>
+        <th>조회수</th>
+        <td><span th:text="${board.viewCnt}"></span></td>
+    </tr>
+    <tr>
+        <th>작성일</th>
+        <td><span th:text="${board.regdate}"></span></td>
+    </tr>
+    <tr>
+        <th>내용</th>
+        <td><span th:text="${board.content}"></span></td>
+    </tr>
+</table>
+
+<div class="button-group">
+    <a href="/">목록보기</a>
+    <a th:href="@{/updateform(boardId=${board.boardId})}">수정하기</a>
+    <a onclick='confirmDelete();' th:href="@{/delete(boardId=${board.boardId})}">삭제하기</a>
+</div>
 </body>
 </html>
+
