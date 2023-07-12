@@ -1,7 +1,6 @@
 package com.example.board_group3.dao;
 
 import com.example.board_group3.dto.Board;
-import com.example.board_group3.dto.User;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
@@ -14,11 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 
 import javax.sql.DataSource;
-import javax.xml.crypto.Data;
-import javax.xml.stream.events.Comment;
 import java.time.LocalDateTime;
-import java.util.Collections;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -33,8 +28,6 @@ public class BoardDao {
         insertBoard = new SimpleJdbcInsert(dataSource)
                 .withTableName("board") //withTableName이 사용하는 table이름은 baord라는 테이블이다.
                 .usingGeneratedKeyColumns("board_id"); // 자동으로 증가되는 id를 설정할때.
-
-
     }
     @Transactional
     public void addBoard(int userId, String title, String content) {
@@ -106,12 +99,6 @@ public class BoardDao {
         //jdbcTemplate.update(sql, Map.of("boardId", boardId, "title", title, "content", content));
     }
 
-//    @Transactional
-//    public void searchBoard(String title) {
-//        String sql = "select * from board where title =:title";
-//        jdbcTemplate.update(sql, Map.of());
-//    }
-
     @Transactional(readOnly = true)
     public List<Board> searchBoards(String keyword) {
         String sql = "SELECT * FROM board WHERE title LIKE :keyword OR content LIKE :keyword";
@@ -119,4 +106,5 @@ public class BoardDao {
         List<Board> searchResults = jdbcTemplate.query(sql, Map.of("keyword", "%" + keyword + "%"), rowMapper);
         return searchResults;
     }
+
 }

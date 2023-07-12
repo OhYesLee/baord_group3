@@ -4,8 +4,10 @@ package com.example.board_group3.controller;
 //import com.example.board_group3.dao.SubcommentDao;
 import com.example.board_group3.dto.Board;
 //import com.example.board_group3.dto.Comment;
+import com.example.board_group3.dto.Comment;
 import com.example.board_group3.dto.LoginInfo;
 import com.example.board_group3.service.BoardService;
+import com.example.board_group3.service.CommentService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.java.Log;
 import org.springframework.stereotype.Controller;
@@ -23,8 +25,7 @@ import java.util.List;
 public class BoardController {
 
     private final BoardService boardService; // BoardService가 BoardController에서도 사용되어야 하니깐 선언을 해야한다.
-//    private final CommentDao commentDao;
-//    private final SubcommentDao subcommentDao;
+    private final CommentService commentService;
 
     //게시물 목록 보여주는 것
     //컨트롤러의 메소드가 리턴하는 문자열을 템플릿(리스트) 이름니다.
@@ -65,7 +66,9 @@ public class BoardController {
         //id에 해당하는 게시물을 읽어오는 과정
         //id에 해당하는 게시물의 조회수도 1증가해야한다.
         Board board = boardService.getBoard(boardId); //board service에서 작성
+        List<Comment> comments = commentService.getCommentsByBoardId(boardId);
         model.addAttribute("board", board);
+        model.addAttribute("comments",comments);
         return "board"; // 특정 게시글을 클릭했을때 board.html로 넘겨준다.
     }
 
@@ -161,61 +164,20 @@ public class BoardController {
         return "search-results";
     }
 
-//    @PostMapping("/addComment")
-//    public String addComment(
-//            @RequestParam("boardId") int boardId,
-//            @RequestParam("content") String content,
-//            HttpSession session
-//    ) {
-//        LoginInfo loginInfo = (LoginInfo) session.getAttribute("loginInfo");
-//        if (loginInfo == null) {
-//            return "redirect:/loginform";
-//        }
-//        int userId = loginInfo.getUserId();
-//        commentDao.addComment(boardId, userId, content);
-//        return "redirect:/board?boardId=" + boardId;
-//    }
-//
-//    @GetMapping("/deleteComment")
-//    public String deleteComment(
-//            @RequestParam("commentId") int commentId,
-//            HttpSession session
-//    ) {
-//        LoginInfo loginInfo = (LoginInfo) session.getAttribute("loginInfo");
-//        if (loginInfo == null) {
-//            return "redirect:/loginform";
-//        }
-//        commentDao.deleteComment(commentId);
-//        return "redirect:/";
-//    }
-//
-//    @PostMapping("/addSubcomment")
-//    public String addSubcomment(
-//            @RequestParam("commentId") int commentId,
-//            @RequestParam("content") String content,
-//            HttpSession session
-//    ) {
-//        LoginInfo loginInfo = (LoginInfo) session.getAttribute("loginInfo");
-//        if (loginInfo == null) {
-//            return "redirect:/loginform";
-//        }
-//        int userId = loginInfo.getUserId();
-//        subcommentDao.addSubcomment(commentId, userId, content);
-//        Comment comment = commentDao.getComment(commentId); // 수정된 부분
-//        return "redirect:/board?boardId=" + comment.getBoardId();
-//    }
-//
-//    @GetMapping("/deleteSubcomment")
-//    public String deleteSubcomment(
-//            @RequestParam("subcommentId") int subcommentId,
-//            HttpSession session
-//    ) {
-//        LoginInfo loginInfo = (LoginInfo) session.getAttribute("loginInfo");
-//        if (loginInfo == null) {
-//            return "redirect:/loginform";
-//        }
-//        subcommentDao.deleteSubcomment(subcommentId);
-//        return "redirect:/";
-//    }
+
+    //댓글
+    @PostMapping("/writeComment")
+    public String writeComment(
+            @RequestParam("boardId") int boardId,
+            @RequestParam("content") String content,
+            HttpSession session
+    ) {
+        LoginInfo loginInfo = (LoginInfo) session.getAttribute("loginInfo");
+        if (loginInfo == null) {
+            return "redirect:/loginform";
+        }
+        commentService.addComment(boardId, content, loginInfo.getName());
+        return "redirect:/board?boardId=" + boardId;
+    }
 
 }

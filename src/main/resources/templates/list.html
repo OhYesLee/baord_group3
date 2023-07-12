@@ -8,6 +8,18 @@
     <link rel="stylesheet" href="list.css" />
 </head>
 <body>
+<header class="gnb">
+    <div class="container">
+        <nav>
+            <ul>
+                <li><a href="https://www.google.com" target="_blank">구글</a></li>
+                <li><a href="https://weather.naver.com/today/" target="_blank">날씨</a></li>
+                <li><a href="http://www.naver.com" target="_blank">네이버</a></li>
+                <li><a href="#" target="_blank">메뉴 4</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
 <section class="board">
     <div class="page-title">
         <div class="container">
@@ -79,11 +91,9 @@
                     <span th:each="n : ${#numbers.sequence(1, pageCount)}"><a th:href="@{/(page=${n})}" th:text="${n}"></a></span>
                 </div>
             </div>
-
         </div>
 
         <!-- 검색어 입력 필드와 검색 버튼 -->
-
         <div id="search-form">
             <div class="container">
                 <form action="/search" method="GET">
@@ -94,15 +104,6 @@
         </div>
         <div id="external-link">
             <a href="https://www.google.com">외부 링크</a>
-        </div>
-        <div id="dropdownButton">
-            <div class="container">
-                <select>
-                    <option value="option1">옵션 1</option>
-                    <option value="option2">옵션 2</option>
-                    <option value="option3">옵션 3</option>
-                </select>
-            </div>
         </div>
     </div>
 </section>
