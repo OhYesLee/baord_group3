@@ -10,6 +10,7 @@ import com.example.board_group3.service.BoardService;
 import com.example.board_group3.service.CommentService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.java.Log;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -156,6 +157,8 @@ public class BoardController {
         boardService.updateBoard(boardId, title, content);
         return  "redirect:/board?boardId=" + boardId; // 수정된 글 보기로 redirect
     }
+
+
 
     @GetMapping("/search")
     public String search(@RequestParam("keyword") String keyword, Model model) {

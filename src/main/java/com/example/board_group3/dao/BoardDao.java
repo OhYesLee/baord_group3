@@ -99,6 +99,8 @@ public class BoardDao {
         //jdbcTemplate.update(sql, Map.of("boardId", boardId, "title", title, "content", content));
     }
 
+
+
     @Transactional(readOnly = true)
     public List<Board> searchBoards(String keyword) {
         String sql = "SELECT * FROM board WHERE title LIKE :keyword OR content LIKE :keyword";
