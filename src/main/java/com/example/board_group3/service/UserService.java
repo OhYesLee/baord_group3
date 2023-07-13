@@ -15,15 +15,6 @@ public class UserService {
     //UserService에서는 UserDao를 사용해야 하기 때문에 UserDao를 injection받아야 한다. injection되는 Dao는 final로 선언, final로 선언된 것은 반드시 생성자 주입이 필요하다.
     private final UserDao userDao; // userDao라는 컴포넌트로 관리가 될려면 UserDao에서 @Repository로 해야한다. fianl 변수는 무조건 초기화 해줘야 한다.
 
-    /*
-    // !!!!! 하지만 lombok 에서 @RequriedArgsContstructor 를 사용하기때문에 아래 코드는 사용하지 않는다.
-    //Spring이 UserService를 Bean으로 생성할때 생성자를 이용해 생성을 하는데, 이때 UserDao Bean이 있는지 보고
-    //그 빈을 주입한다. 생성자 주입.
-    public UserService(UserDao userDao){
-        this.userDao = userDao; // userDao 를 초기화 해준다.
-    }
-    */
-
     @Transactional // 보통 서비스에서는 @Transactional을 붙여서 하나의 트랜잭션으로 처리하게 한다.
     // Spring boot는 트랜잭션을 처리해주는 트랜잭션 관리자를 가지고 있다.
     public User addUser(String name, String email, String password) { // UserController에서 userReg에 받아들인 정보는 name, email password 이기때문에 괄호안에 3가지 값을 DB 저장하고,
