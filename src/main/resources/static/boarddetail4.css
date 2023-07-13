@@ -133,3 +133,46 @@ a:hover {
     }
 
 }
+
+/* Additional Styles */
+#commentAddArea {
+    margin-top: 20px;
+}
+
+.CommentArea h2 {
+    margin-bottom: 10px;
+}
+
+.CommentArea form {
+    margin-bottom: 10px;
+}
+
+.CommentArea textarea {
+    width: 100%;
+    height: 100px;
+    resize: vertical;
+    padding: 5px;
+}
+
+.CommentArea button[type="submit"] {
+    background-color: #333;
+    color: #fff;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+.CommentArea ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.CommentArea li {
+    margin-bottom: 10px;
+}
+
+.CommentArea li span {
+    display: inline-block;
+    margin-right: 5px;
+}
