@@ -6,6 +6,8 @@
 ![mysql1](https://github.com/tjdwo8577/baord_group3/assets/88715270/1ed08859-a08d-4721-a83c-aefdfb166799)
 
 ![mysql2](https://github.com/tjdwo8577/baord_group3/assets/88715270/07df94e0-df1b-498d-9aef-c273e3da9d41)
+![mysql comment](https://github.com/tjdwo8577/baord_group3/assets/88715270/0f515192-9456-49c9-90fb-4964a753ed08)
+
 
 ### css 부분은 아직 미완성입니다.
 
